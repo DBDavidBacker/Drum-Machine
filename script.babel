@@ -1,0 +1,132 @@
+
+
+
+
+class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      kick: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Kicks/15[kb]808bd2.aif.mp3",
+      snare: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Snares/29[kb]909sd.aif.mp3",
+      chh: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Hats/27[kb]909-bright-ohh.aif.mp3",
+      ohh: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Hats/32[kb]hard_ohh.aif.mp3",
+      crash: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Crashes/87[kb]curecrash.aif.mp3",
+      ride: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Rides/81[kb]909-bright-ride.aif.mp3",
+      htom: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Toms/210[kb]giant_tom.aif.mp3",
+      ftom: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Toms/186[kb]giant_floor_tom.aif.mp3",
+      clap: "https://sampleswap.org/samples-ghost/DRUMS%20(SINGLE%20HITS)/Claps/34[kb]brightclap.aif.mp3",
+      display: "Instrument"
+     
+      
+    }
+    
+    this.clickFunction = this.clickFunction.bind(this)
+    this.pressFunction = this.pressFunction.bind(this)
+  }
+ 
+  pressFunction(event){
+    
+
+  let y = document.getElementsByClassName('drum-pad').length
+    
+  
+  let keyArray = []
+  
+    
+    
+    
+  for(let x = 0; x<y; x++){ keyArray.push(document.getElementById(document.getElementsByClassName('drum-pad')[x].id).innerText)
+  }  
+   
+ let p = event.key.toUpperCase()
+
+    if(keyArray.includes(p)){
+      
+      let z = keyArray.indexOf(p)
+      let button = document.getElementsByClassName('drum-pad')[z]
+      
+      console.log(button.id)
+      
+      button.click()
+      }
+
+  }
+  
+
+  
+  clickFunction = (x) =>{
+    
+    let y = document.getElementById((document.getElementsByClassName('drum-pad')[x]).innerText)
+    
+    if(y.paused == false){
+      y.pause();
+      y.currentTime = 0;
+      y.play();
+      this.setState({
+     display: document.getElementsByClassName('drum-pad')[x].id
+   })
+    }
+    else{
+y.play()
+      this.setState({
+     display: document.getElementsByClassName('drum-pad')[x].id
+   })
+    }
+    
+  }
+  
+  render(){
+    return(
+    <div id="drum-machine" onKeyDown={this.pressFunction}>
+        <h1>Drum Machine</h1> 
+        
+        
+        <div id="actual-machine">
+        
+        <div id="button-grid">
+        <button className="drum-pad" id='Snare' onClick={() => this.clickFunction(0)}>Q<audio className="clip"  id="Q" src={this.state.snare} /></button>
+          
+        
+        
+        <button className="drum-pad" id='Kick' onClick={() => this.clickFunction(1)}>W<audio className="clip"  id="W" src={this.state.kick} /></button>
+          
+         
+        <button className="drum-pad" id='Closed High Hat' onClick={() => this.clickFunction(2)}>E<audio className="clip"  id="E" src={this.state.chh} /></button>
+          
+          
+          
+        
+        <button className="drum-pad" id='Open High Hat' onClick={() => this.clickFunction(3)}>A<audio className="clip"  id="A" src={this.state.ohh} /></button>
+          
+         
+          
+        
+        
+        <button className="drum-pad" id='Crash' onClick={() => this.clickFunction(4)}>S<audio className="clip"  id="S" src={this.state.crash} /></button>
+          
+          
+        <button className="drum-pad" id='Ride' onClick={() => this.clickFunction(5)}>D <audio className="clip"  id="D" src={this.state.ride} /></button>
+         
+        
+        
+        <button className="drum-pad" id='High Tom' onClick={() => this.clickFunction(6)}>Z <audio className="clip"  id="Z" src={this.state.htom} /></button>
+          
+     
+        <button className="drum-pad" id='Floor Tom' onClick={() => this.clickFunction(7)}>X <audio className="clip"  id="X" src={this.state.ftom} /></button>  
+          
+       
+        <button className="drum-pad" id='Clap' onClick={() => this.clickFunction(8)}>C<audio className="clip"  id="C" src={this.state.clap} /></button>    
+          
+          
+        </div>
+        
+        <h2 id='display'>{this.state.display}</h2>
+        
+        </div>  
+          
+    </div>
+    )
+  }
+}
+
+ReactDOM.render(<DrumMachine />, document.getElementById('root'))

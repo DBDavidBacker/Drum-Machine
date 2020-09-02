@@ -1,0 +1,66 @@
+body{
+   
+  background-color: #abb08d;
+}
+
+
+
+#drum-machine{
+ 
+  display: flex;
+   flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #abb08d;
+  height: 100vh;
+  width: 100%;
+}
+
+#actual-machine{
+  position: relative;
+  bottom: 20%;
+  display: flex;
+  width: 800px;
+  margin: auto;
+  background-color: #e3e087;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+h1{
+  display: relative;
+  margin: auto;
+  padding-bottom: 20px;
+  
+}
+
+#display{
+  margin: auto;
+  width: 200px;
+  background-color: #c8e8bb;
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 3px; 
+  border: solid #abb08d 3px;
+}
+
+#button-grid{
+margin: auto;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 75px 75px 75px;
+  grid-gap: 10px;
+
+}
+
+audio{
+  background-color: red;
+}
+
+button{
+  font-size: 20px;
+  background-color: #abb08d;
+}
+
+button:active{
+  background-color: #ebb393;
+}
